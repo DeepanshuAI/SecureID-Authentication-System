@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - MFA Setup</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .qr-placeholder {
+            width: 160px;
+            height: 160px;
+            background: #f3f4f6;
+            margin: 24px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: 500;
+            border-radius: 8px;
+            border: 2px dashed var(--border-color);
+        }
+    </style>
+</head>
+<body>
+    <div id="notification"></div>
+
+    <div class="center-layout">
+        <div class="card">
+            <div class="text-center mb-6">
+                <h1>Multi-Factor Auth</h1>
+                <p class="subtitle">Secure your account with an extra layer of protection.</p>
+            </div>
+            
+            <form id="mfaSetupForm">
+                <div id="methodSelection">
+                    <div class="mfa-option selected" data-method="authenticator">
+                        <input type="radio" name="mfa" checked>
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 15px;">Authenticator App</div>
+                            <div class="text-small text-muted mt-1">Google Authenticator or Authy</div>
+                        </div>
+                    </div>
+                    <div class="mfa-option" data-method="sms">
+                        <input type="radio" name="mfa">
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 15px;">SMS Text Message</div>
+                            <div class="text-small text-muted mt-1">Receive codes via SMS</div>
+                        </div>
+                    </div>
+                    <div class="mfa-option" data-method="email">
+                        <input type="radio" name="mfa">
+                        <div>
+                            <div style="font-weight: 600; color: var(--text-primary); font-size: 15px;">Email Authentication</div>
+                            <div class="text-small text-muted mt-1">Receive codes via Email</div>
+                        </div>
+                    </div>
+                    
+                    <button type="button" class="btn mt-6" style="margin-top: 24px;" id="continueMfaBtn">Continue</button>
+                </div>
+
+                <div id="qrSetup" class="hidden text-center">
+                    <p class="text-small">Scan this QR code with your Authenticator app</p>
+                    <div class="qr-placeholder">
+                        [ QR CODE ]
+                    </div>
+                    <div class="form-group mb-6 text-left">
+                        <label class="form-label">Manual Entry Key</label>
+                        <input type="text" class="form-control" value="JBSWY3DPEHPK3PXP" readonly style="background: var(--bg-page); color: var(--text-muted); text-align: center; font-family: monospace;">
+                    </div>
+                    <button type="submit" class="btn" id="finishMfaBtn">Complete Setup</button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-6" style="margin-top: 24px;">
+                <a href="/login" class="text-link" style="color: var(--text-muted); text-decoration: underline;">Skip for now</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

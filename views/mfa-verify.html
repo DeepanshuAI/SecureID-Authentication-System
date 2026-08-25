@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - Verify MFA</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="notification"></div>
+
+    <div class="center-layout">
+        <div class="card">
+            <div class="text-center mb-6">
+                <h1>Enter 6-digit code</h1>
+                <p class="subtitle">Open your authenticator app and enter the code.</p>
+            </div>
+            
+            <form id="mfaVerifyForm">
+                <div class="otp-grid">
+                    <input type="text" class="otp-box mfa-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="otp-box mfa-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="otp-box mfa-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="otp-box mfa-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="otp-box mfa-input" maxlength="1" pattern="[0-9]" required>
+                    <input type="text" class="otp-box mfa-input" maxlength="1" pattern="[0-9]" required>
+                </div>
+                
+                <button type="submit" class="btn mb-6" id="mfaVerifyBtn">Verify Code</button>
+            </form>
+            
+            <div id="testModeContainer" style="display: none; text-align: center; margin-bottom: 20px;">
+                <button type="button" class="btn" style="background: #e2e8f0; color: #475569; padding: 8px;" id="testOtpBtn">Get Test OTP (Evaluator Mode)</button>
+                <div id="testOtpDisplay" style="margin-top: 8px; font-weight: bold; color: var(--primary-blue);"></div>
+            </div>
+
+            <div class="text-center">
+                <a href="/mfa-setup" class="text-link text-small" style="color: var(--text-muted); text-decoration: underline;">Back to Setup</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

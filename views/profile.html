@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - Profile</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .profile-container {
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .profile-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+        }
+        .profile-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .profile-row:last-child {
+            border-bottom: none;
+        }
+        .profile-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .profile-value {
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="mb-6">
+            <a href="/dashboard" class="btn btn-secondary" style="display: inline-flex; width: auto; text-decoration: none;">
+                <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="margin-right: 8px;"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Back to Dashboard
+            </a>
+        </div>
+
+        <div class="profile-card">
+            <h1 class="mb-6">Profile Settings</h1>
+            
+            <div class="profile-row">
+                <div class="profile-label">Full Name</div>
+                <div class="profile-value" id="profileName">Loading...</div>
+            </div>
+            <div class="profile-row">
+                <div class="profile-label">Email Address</div>
+                <div class="profile-value" id="profileEmail">Loading...</div>
+            </div>
+            <div class="profile-row">
+                <div class="profile-label">Mobile Number</div>
+                <div class="profile-value" id="profileMobile">Loading...</div>
+            </div>
+            <div class="profile-row">
+                <div class="profile-label">Email Verification</div>
+                <div class="profile-value" id="profileEmailVerify">Loading...</div>
+            </div>
+            <div class="profile-row">
+                <div class="profile-label">Mobile Verification</div>
+                <div class="profile-value" id="profileMobileVerify">Loading...</div>
+            </div>
+            <div class="profile-row">
+                <div class="profile-label">MFA Method</div>
+                <div class="profile-value" id="profileMfa">Loading...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const res = await api.get('/me');
+            if (res.success) {
+                const u = res.user;
+                document.getElementById('profileName').textContent = u.fullName;
+                document.getElementById('profileEmail').textContent = u.email;
+                document.getElementById('profileMobile').textContent = u.mobile;
+                
+                const ev = document.getElementById('profileEmailVerify');
+                ev.textContent = u.emailVerified ? 'Verified' : 'Pending';
+                ev.style.color = u.emailVerified ? 'var(--success-green)' : 'var(--text-muted)';
+                
+                const mv = document.getElementById('profileMobileVerify');
+                mv.textContent = u.mobileVerified ? 'Verified' : 'Pending';
+                mv.style.color = u.mobileVerified ? 'var(--success-green)' : 'var(--text-muted)';
+                
+                document.getElementById('profileMfa').textContent = (u.mfaMethod || 'Email').toUpperCase();
+            }
+        });
+    </script>
+</body>
+</html>

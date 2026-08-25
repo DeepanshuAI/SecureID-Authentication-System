@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - Choose Verification Method</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .mfa-option {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .mfa-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.02);
+        }
+        .mfa-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.05);
+        }
+        .mfa-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-page);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            color: var(--primary-color);
+        }
+        .mfa-text {
+            flex: 1;
+            text-align: left;
+        }
+        .mfa-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+        .mfa-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .mfa-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mfa-option.selected .mfa-radio {
+            border-color: var(--primary-color);
+        }
+        .mfa-option.selected .mfa-radio::after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="notification"></div>
+    
+    <div class="center-layout">
+        <div class="card text-center" style="max-width: 440px;">
+            <h1 class="mb-2">Choose Verification Method</h1>
+            <p class="subtitle mb-6">Select how you want to receive your security code.</p>
+
+            <form id="loginMfaSelectForm">
+                <div class="mfa-option" data-method="authenticator">
+                    <div class="mfa-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <div class="mfa-text">
+                        <div class="mfa-title">Authenticator App</div>
+                        <div class="mfa-desc">Get a code from your authenticator app</div>
+                    </div>
+                    <div class="mfa-radio"></div>
+                </div>
+
+                <div class="mfa-option" data-method="sms">
+                    <div class="mfa-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="mfa-text">
+                        <div class="mfa-title">SMS Authentication</div>
+                        <div class="mfa-desc">We'll send a code to your registered mobile</div>
+                    </div>
+                    <div class="mfa-radio"></div>
+                </div>
+
+                <div class="mfa-option" data-method="email">
+                    <div class="mfa-icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="mfa-text">
+                        <div class="mfa-title">Email Authentication</div>
+                        <div class="mfa-desc">We'll send a code to your registered email</div>
+                    </div>
+                    <div class="mfa-radio"></div>
+                </div>
+                
+                <button type="submit" class="btn mt-6" id="sendCodeBtn">Continue</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

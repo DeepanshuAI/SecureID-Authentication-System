@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - Registration Success</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--success-bg);
+            color: var(--success-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+        }
+        .checklist-container {
+            background: var(--bg-page);
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 24px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-layout">
+        <div class="card text-center" style="max-width: 480px;">
+            <div class="success-icon">
+                <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+            <h1>Account Created</h1>
+            <p class="subtitle">Your account has been created successfully.</p>
+            
+            <div class="checklist-container mb-8">
+                <div class="checklist-item valid">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    Email verified
+                </div>
+                <div class="checklist-item valid">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    Mobile verified
+                </div>
+                <div class="checklist-item valid">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    MFA enabled
+                </div>
+            </div>
+
+            <a href="/login" class="btn" style="text-decoration: none; display: block;">Continue to Login</a>
+        </div>
+    </div>
+</body>
+</html>

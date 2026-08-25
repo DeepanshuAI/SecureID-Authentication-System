@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - Create Account</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="notification"></div>
+    
+    <header class="reg-header">
+        <div class="reg-logo">SecureID</div>
+        <div class="stepper">
+            <div class="step active">1</div>
+            <div class="step-line"></div>
+            <div class="step pending">2</div>
+            <div class="step-line"></div>
+            <div class="step pending">3</div>
+            <div class="step-line"></div>
+            <div class="step pending">4</div>
+        </div>
+        <div style="width: 80px;"></div> <!-- spacer -->
+    </header>
+
+    <div class="reg-container">
+        <!-- Form Column -->
+        <div class="reg-form-col">
+            <h1 class="mb-2">Create your account</h1>
+            <p class="subtitle mb-6">Enter your details to get started with SecureID.</p>
+
+            <form id="registerForm">
+                <div class="form-group">
+                    <label class="form-label" for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="John Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" class="form-control" placeholder="+1 (555) 000-0000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group mb-6">
+                    <label class="form-label" for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm your password" required>
+                    <div class="error-text" id="passwordMatchError">Passwords do not match</div>
+                </div>
+
+                <div class="form-group checkbox-group mb-6">
+                    <input type="checkbox" id="terms" required>
+                    <label class="text-small" for="terms">I agree to the <a href="#" class="text-link">Terms of Service</a> and <a href="#" class="text-link">Privacy Policy</a></label>
+                </div>
+                
+                <button type="submit" class="btn" id="registerBtn">Create Account</button>
+            </form>
+            
+            <div class="text-center mt-6" style="margin-top: 24px;">
+                <span class="text-small text-muted">Already have an account?</span> <a href="/login" class="text-link">Log In</a>
+            </div>
+        </div>
+
+        <!-- Checklist Column -->
+        <div class="reg-check-col">
+            <h3 style="font-size: 16px; font-weight: 600; margin-bottom: 16px;">Password Requirements</h3>
+            <div class="checklist">
+                <div class="checklist-item" id="checkLength">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    At least 8 characters
+                </div>
+                <div class="checklist-item" id="checkUpper">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    One uppercase letter
+                </div>
+                <div class="checklist-item" id="checkNumber">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    One number
+                </div>
+                <div class="checklist-item" id="checkSpecial">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    One special character
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

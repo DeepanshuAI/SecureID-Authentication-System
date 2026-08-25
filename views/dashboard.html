@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureID - Dashboard</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .dashboard-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div id="notification"></div>
+
+    <div class="dashboard-container">
+        <div class="header-actions">
+            <h2 style="font-size: 24px; font-weight: 700; color: var(--primary-blue);">SecureID</h2>
+            <button id="logoutBtn" class="btn btn-secondary" style="width: auto;">Log out</button>
+        </div>
+        
+        <div class="card" style="max-width: 100%;">
+            <div class="mb-6">
+                <h1 id="welcomeText">Welcome, User</h1>
+                <p class="subtitle">Manage your identity and security settings.</p>
+            </div>
+            
+            <div class="dash-grid">
+                <div class="dash-card">
+                    <p class="text-small text-muted">Email Status</p>
+                    <div class="dash-status status-pending" id="emailStatus">Pending</div>
+                </div>
+                <div class="dash-card">
+                    <p class="text-small text-muted">Mobile Status</p>
+                    <div class="dash-status status-pending" id="mobileStatus">Pending</div>
+                </div>
+                <div class="dash-card">
+                    <p class="text-small text-muted">MFA Method</p>
+                    <div class="dash-status" id="mfaStatus" style="color: var(--primary-blue);">Email</div>
+                </div>
+            </div>
+
+            <div class="divider">Advanced</div>
+
+            <div class="flex gap-4">
+                <button id="viewProfileBtn" class="btn" style="flex: 1;" onclick="window.location.href='/profile'">View Profile</button>
+                <button id="testJwtBtn" class="btn btn-secondary" style="flex: 1;">Test JWT Auth</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JWT Modal -->
+    <div id="jwtModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; z-index: 50;">
+        <div style="background: white; padding: 32px; border-radius: 12px; text-align: center; max-width: 400px; width: 100%;">
+            <div style="width: 48px; height: 48px; background: var(--success-bg); color: var(--success-green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px;">
+                <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">JWT Authentication Successful</h2>
+            <p class="subtitle mb-6" style="margin-bottom: 24px;">Protected Route Access Granted<br><br>Token Valid</p>
+            <button class="btn" id="closeJwtBtn">Close</button>
+        </div>
+    </div>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

@@ -74,6 +74,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         const passwordInput = document.getElementById('password');
+        const toggleBtn = document.getElementById('togglePassword');
+        const strengthContainer = document.getElementById('passwordStrength');
+        const strengthText = document.getElementById('strengthText');
+
+        toggleBtn.addEventListener('click', () => {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleBtn.textContent = 'HIDE';
+            } else {
+                passwordInput.type = 'password';
+                toggleBtn.textContent = 'SHOW';
+            }
+        });
+
         const confirmInput = document.getElementById('confirmPassword');
         const checkLength = document.getElementById('checkLength');
         const checkUpper = document.getElementById('checkUpper');
@@ -84,7 +98,35 @@ document.addEventListener('DOMContentLoaded', () => {
         // Password checklist logic
         passwordInput.addEventListener('input', (e) => {
             const val = e.target.value;
-            
+
+            //strength calculator
+            if (val.length === 0) {
+                strengthContainer.style.display = 'none';
+            } else {
+                strengthContainer.style.display = 'block';
+            let score=0;
+
+            if(val.length >= 8) score++;
+            if(val.match(/[A-Z]/)) score++;
+            if(val.match(/[0-9]/)) score++;
+            if(val.match(/[^A-Za-z0-9]/)) score++;
+
+            strengthText.className='';
+            strengthText.dataset.score=score;
+
+            if(score<2) {
+                strengthText.textContent='Weak';
+                strengthText.classList.add('strength-weak');
+            }
+            else if(score<4) {
+                strengthText.textContent='Medium';
+                strengthText.classList.add('strength-medium');
+            }
+            else {
+                strengthText.textContent='Strong';
+                strengthText.classList.add('strength-strong');
+            }
+        } 
             if (checkLength) val.length >= 8 ? checkLength.classList.add('valid') : checkLength.classList.remove('valid');
             if (checkUpper) val.match(/[A-Z]/) ? checkUpper.classList.add('valid') : checkUpper.classList.remove('valid');
             if (checkNumber) val.match(/[0-9]/) ? checkNumber.classList.add('valid') : checkNumber.classList.remove('valid');
@@ -106,6 +148,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             } else {
                 document.getElementById('passwordMatchError').style.display = 'none';
+            }
+
+            //prevent weak pasword login
+            const currentScore=parseInt(strengthText.dataset.score||0);
+
+            if(currentScore<2) {
+                UI.showNotification('Password is too weak. Please meet at least 2 requirements.', 'error');
+                return;
             }
 
             if (!terms) {

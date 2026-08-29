@@ -46,8 +46,12 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="password">Password</label>
+                    <label class="form-label" for="password" style="display:flex; justify-content:space-between;"> 
+                        <span> Password </span>  
+                    <span id="togglePassword" style="cursor:pointer; color: var(--primary-blue); font-size:12px; font-weight: 600;"> SHOW</span>
+                    </label>
                     <input type="password" id="password" class="form-control" placeholder="Create a password" required>
+                    <div id="passwordStrength" style ="font-size:12px; font-weight:600; margin-top:6px; display:none;">Strength: <span id="strengthText"></span> </div>
                 </div>
 
                 <div class="form-group mb-6">
